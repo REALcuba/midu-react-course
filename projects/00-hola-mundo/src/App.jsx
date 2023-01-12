@@ -2,18 +2,39 @@ import reactLogo from './assets/react.svg'
 import './App.css'
 import TwitterFollowCard from './components/TwiterFollowCard/TwitterFollowCard'
 
+const users = [
+  {
+    userName: 'REALcuba',
+    name: 'Angel Matos',
+    isFollowing: true
+  },
+  {
+    userName: 'Titina',
+    name: ' Danay Morant',
+    isFollowing: false
+  }
+]
 function App() {
 
   const format = (userName) => `@${userName}`;
   return (
-    <>
-      <TwitterFollowCard format={format} userName="REALcuba" initialIsFollowing={false}>
-        Angel Matos
-      </TwitterFollowCard>
-      <TwitterFollowCard format={format} name="Danay Morant" userName="Titina" initialIsFollowing >
-        Danay Morant
-      </TwitterFollowCard>
-    </>
+    <section>
+      {
+        users.map(user => {
+          const { userName, name, isFollowing } = user;
+          return (
+            <TwitterFollowCard
+              format={format}
+              userName={userName}
+              initialIsFollowing={isFollowing}
+              key={userName}
+            >
+              {name}
+            </TwitterFollowCard>
+          )
+        })
+      }
+    </section>
   )
 }
 
